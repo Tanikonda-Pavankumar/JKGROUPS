@@ -1,0 +1,74 @@
+@media (pointer: fine) {
+  * { cursor: none !important; }
+}
+
+/* ── Dot ── */
+.cc-dot {
+  position: fixed;
+  top: 0; left: 0;
+  width: 7px; height: 7px;
+  background: #cc0000;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99999;
+  opacity: 0;
+  transition: opacity 0.3s, width 0.25s ease, height 0.25s ease, background 0.25s ease;
+  will-change: transform;
+}
+.cc-dot.cc-visible { opacity: 1; }
+.cc-dot[data-state="button"] {
+  width: 5px; height: 5px;
+  background: #fff;
+}
+.cc-dot[data-state="image"] {
+  opacity: 0;
+}
+
+/* ── Ring ── */
+.cc-ring {
+  position: fixed;
+  top: 0; left: 0;
+  width: 36px; height: 36px;
+  border: 1.5px solid rgba(180, 0, 0, 0.55);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99998;
+  opacity: 0;
+  transition:
+    opacity 0.3s,
+    width 0.35s cubic-bezier(0.34,1.56,0.64,1),
+    height 0.35s cubic-bezier(0.34,1.56,0.64,1),
+    border-color 0.3s ease,
+    background 0.3s ease;
+  will-change: transform;
+}
+.cc-ring.cc-visible { opacity: 1; }
+.cc-ring[data-state="button"] {
+  width: 52px; height: 52px;
+  border-color: rgba(200, 0, 0, 0.7);
+  background: rgba(180, 0, 0, 0.08);
+}
+.cc-ring[data-state="image"] {
+  width: 72px; height: 72px;
+  border-color: rgba(255, 255, 255, 0.5);
+  background: rgba(0, 0, 0, 0.35);
+}
+
+/* ── VIEW label ── */
+.cc-label {
+  position: fixed;
+  top: 0; left: 0;
+  pointer-events: none;
+  z-index: 99999;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #fff;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  will-change: transform;
+}
+.cc-label[data-state="image"] {
+  opacity: 1;
+}
