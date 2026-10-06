@@ -117,9 +117,10 @@ const FAQItem = ({ faq, index }) => {
           >
             <p
               style={{
-                color: "var(--text-light)",
+                color: "#000000",
                 lineHeight: "1.8",
-                fontSize: "0.95rem",
+                fontSize: "1rem",
+                fontWeight: "500",
                 paddingBottom: "1.5rem",
                 margin: 0,
               }}

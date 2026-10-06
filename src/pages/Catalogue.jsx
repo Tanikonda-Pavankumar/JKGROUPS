@@ -195,6 +195,7 @@ const CatalogueCard = ({ cat, index, featured = false, onClick }) => {
 
         {/* CTA — reveals on hover */}
         <motion.div
+          className="catalogue-mobile-cta"
           animate={{ opacity: hovered ? 1 : 0, y: hovered ? 0 : 12 }}
           transition={{ duration: 0.4, ease: 'easeOut' }}
           style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}

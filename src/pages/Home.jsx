@@ -18,15 +18,24 @@ import gp10 from '../gallery/WhatsApp Image 2026-10-02 at 11.09.21 AM (27).jpeg'
 
 const previewImages = [gp1, gp2, gp3, gp4, gp5, gp6, gp7, gp8, gp9, gp10];
 
+import imgTeak from '../product images/TEAK WOOD DOORS.png';
+import imgVeneer from '../product images/VENEER DOORS.png';
+import imgLaminate from '../product images/LAMINATE DOORS.png';
+import imgWpc from '../product images/WPC DOORS Premium.png';
+import imgWpcFrames from '../product images/WPC FRAMES.png';
+import imgPlywood from '../product images/PLYWOOD.png';
+import imgHardware from '../product images/HARDWARE.png';
+import imgInteriors from '../product images/INTERIORS.png';
+
 const categories = [
-  { name: 'Teak Wood Doors',  image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80' },
-  { name: 'Veneer Doors',     image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80' },
-  { name: 'Laminate Doors',   image: 'https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=800&q=80' },
-  { name: 'WPC Doors',        image: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?w=800&q=80' },
-  { name: 'WPC Frames',       image: 'https://images.unsplash.com/photo-1600607688066-890987f18a86?w=800&q=80' },
-  { name: 'Plywood',          image: 'https://images.unsplash.com/photo-1546484396-fb3fc6f95f98?w=800&q=80' },
-  { name: 'Hardware',         image: 'https://images.unsplash.com/photo-1558211583-057bfd6205bd?w=800&q=80' },
-  { name: 'Interiors',        image: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800&q=80' }
+  { name: 'Teak Wood Doors',  image: imgTeak },
+  { name: 'Veneer Doors',     image: imgVeneer },
+  { name: 'Laminate Doors',   image: imgLaminate },
+  { name: 'WPC Doors',        image: imgWpc },
+  { name: 'WPC Frames',       image: imgWpcFrames },
+  { name: 'Plywood',          image: imgPlywood },
+  { name: 'Hardware',         image: imgHardware },
+  { name: 'Interiors',        image: imgInteriors }
 ];
 
 const stagger = {
@@ -75,8 +84,8 @@ const CinematicHero = () => {
           Wooden Doors &amp; Frames · Manufacturing Hub
         </motion.p>
         <motion.h1 variants={fadeUp} style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(2.4rem, 5.5vw, 4.2rem)', fontWeight: 700, color: '#fff', lineHeight: 1.1, marginBottom: '1.2rem', letterSpacing: '-0.5px' }}>
-          Crafting <span style={{ color: '#f58634' }}>Luxury</span><br />
-          Premium <span style={{ color: '#f58634' }}>Doors &amp; Frames</span>
+          Crafting <span style={{ color: '#b8935c' }}>Luxury</span><br />
+          Premium <span style={{ color: '#b8935c' }}>Doors &amp; Frames</span>
         </motion.h1>
         <motion.p variants={fadeUp} style={{ fontFamily: "'Playfair Display', serif", fontStyle: 'italic', fontSize: '1.1rem', color: 'rgba(255,255,255,0.5)', marginBottom: '2.5rem', lineHeight: 1.6 }}>
           Since 2006 — Bengaluru's finest door manufacturing house.
@@ -451,8 +460,15 @@ const Home = () => {
               transition={{ duration: 0.6, delay: idx * 0.06, ease: [0.22, 1, 0.36, 1] }}
               whileHover={{ y: -4, scale: 1.02 }}
             >
-              <img src={cat.image} alt={cat.name} />
-              <h3>{cat.name}</h3>
+              <Link to="/products" style={{ textDecoration: 'none', color: 'inherit', display: 'flex', flexDirection: 'column', height: '100%' }}>
+                <img src={cat.image} alt={cat.name} />
+                <div style={{ padding: '0.8rem', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', flexGrow: 1, backgroundColor: 'white' }}>
+                  <h3 style={{ margin: 0, padding: 0, paddingBottom: '0.3rem', fontSize: '0.85rem' }}>{cat.name}</h3>
+                  <span style={{ fontSize: '0.7rem', color: 'var(--primary-orange)', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '4px' }}>
+                    View Details <span>→</span>
+                  </span>
+                </div>
+              </Link>
             </motion.div>
           ))}
         </div>
