@@ -1,8 +1,9 @@
 import AnimatedPage from "../components/AnimatedPage";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useState } from "react";
+import Typewriter from "../components/Typewriter";
 
-const WA_NUMBER = "918971794549"; // WhatsApp number with country code
+const WA_NUMBER = "918971794949"; // WhatsApp number with country code
 
 const inputStyle = {
   padding: "0.8rem",
@@ -131,7 +132,7 @@ const Contact = () => {
             fontWeight: 600,
           }}
         >
-          Contact Us
+          <Typewriter text="Contact Us" delay={300} />
         </motion.h1>
         <motion.p
           initial={{ opacity: 0, y: 15 }}
@@ -174,12 +175,12 @@ const Contact = () => {
               {
                 icon: <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />,
                 title: "Call Us",
-                content: "8971794549  |  9380668222",
+                content: "89717 94949",
               },
               {
                 icon: <path d="M12 2C6.48 2 2 6.48 2 12c0 1.74.45 3.37 1.23 4.79L2 22l5.32-1.19C8.68 21.58 10.3 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm5.45 14.3c-.23.64-1.34 1.22-1.85 1.29-.48.06-1.12.12-3.21-.75-2.52-1.05-4.14-3.64-4.26-3.8-.13-.16-1.02-1.35-1.02-2.58s.64-1.83.86-2.07c.22-.23.48-.29.64-.29.16 0 .32 0 .46.01.14.01.33-.06.51.39.19.46.64 1.57.7 1.7.06.13.1.29.01.48-.08.19-.13.31-.25.46-.13.14-.26.31-.38.42-.13.13-.26.27-.12.51.15.25.66 1.08 1.41 1.76.96.88 1.77 1.15 2.01 1.26.25.11.39.1.53-.06.14-.17.61-.71.77-.95.16-.25.32-.21.54-.12.22.08 1.41.66 1.65.79.24.13.4.19.46.29.06.11.06.63-.17 1.27z" />,
                 title: "WhatsApp",
-                content: "8971794549",
+                content: "89717 94949",
               },
               {
                 icon: <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />,

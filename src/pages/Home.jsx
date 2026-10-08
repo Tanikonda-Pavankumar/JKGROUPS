@@ -2,41 +2,19 @@ import { Link } from 'react-router-dom';
 import { motion, useAnimation, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import AnimatedPage from '../components/AnimatedPage';
+import Typewriter from '../components/Typewriter';
 import bannerImg from '../assets/banner.png';
 
-// ─── 8 real gallery images for home preview (last 8) ───
-import gp1 from '../gallery/WhatsApp Image 2026-10-02 at 11.09.21 AM (28).jpeg';
-import gp2 from '../gallery/WhatsApp Image 2026-10-02 at 11.09.21 AM (29).jpeg';
-import gp3 from '../gallery/WhatsApp Image 2026-10-02 at 11.09.21 AM (30).jpeg';
-import gp4 from '../gallery/WhatsApp Image 2026-10-02 at 11.09.21 AM (31).jpeg';
-import gp5 from '../gallery/WhatsApp Image 2026-10-02 at 11.09.21 AM (32).jpeg';
-import gp6 from '../gallery/WhatsApp Image 2026-10-02 at 11.09.21 AM (33).jpeg';
-import gp7 from '../gallery/WhatsApp Image 2026-10-02 at 11.09.21 AM (34).jpeg';
-import gp8 from '../gallery/WhatsApp Image 2026-10-02 at 11.09.21 AM (35).jpeg';
-import gp9 from '../gallery/WhatsApp Image 2026-10-02 at 11.09.21 AM (26).jpeg';
-import gp10 from '../gallery/WhatsApp Image 2026-10-02 at 11.09.21 AM (27).jpeg';
+// ─── real gallery images for home preview ───
+const imageModules = import.meta.glob('../gallery/*.{png,jpg,jpeg,webp}', { eager: true, import: 'default' });
+const previewImages = Object.values(imageModules).slice(0, 10);
 
-const previewImages = [gp1, gp2, gp3, gp4, gp5, gp6, gp7, gp8, gp9, gp10];
+import { products } from '../productsData';
 
-import imgTeak from '../product images/TEAK WOOD DOORS.png';
-import imgVeneer from '../product images/VENEER DOORS.png';
-import imgLaminate from '../product images/LAMINATE DOORS.png';
-import imgWpc from '../product images/WPC DOORS Premium.png';
-import imgWpcFrames from '../product images/WPC FRAMES.png';
-import imgPlywood from '../product images/PLYWOOD.png';
-import imgHardware from '../product images/HARDWARE.png';
-import imgInteriors from '../product images/INTERIORS.png';
-
-const categories = [
-  { name: 'Teak Wood Doors',  image: imgTeak },
-  { name: 'Veneer Doors',     image: imgVeneer },
-  { name: 'Laminate Doors',   image: imgLaminate },
-  { name: 'WPC Doors',        image: imgWpc },
-  { name: 'WPC Frames',       image: imgWpcFrames },
-  { name: 'Plywood',          image: imgPlywood },
-  { name: 'Hardware',         image: imgHardware },
-  { name: 'Interiors',        image: imgInteriors }
-];
+const categories = products.slice(0, 8).map(p => ({
+  name: p.title,
+  image: p.image
+}));
 
 const stagger = {
   hidden: {},
@@ -84,8 +62,10 @@ const CinematicHero = () => {
           Wooden Doors &amp; Frames · Manufacturing Hub
         </motion.p>
         <motion.h1 variants={fadeUp} style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(2.4rem, 5.5vw, 4.2rem)', fontWeight: 700, color: '#fff', lineHeight: 1.1, marginBottom: '1.2rem', letterSpacing: '-0.5px' }}>
-          Crafting <span style={{ color: '#b8935c' }}>Luxury</span><br />
-          Premium <span style={{ color: '#b8935c' }}>Doors &amp; Frames</span>
+          <Typewriter text="Crafting " cursor={false} delay={300} />
+          <span style={{ color: '#b8935c' }}><Typewriter text="Luxury" cursor={false} delay={700} /></span><br />
+          <Typewriter text="Premium " cursor={false} delay={1000} />
+          <span style={{ color: '#b8935c' }}><Typewriter text="Doors & Frames" delay={1400} /></span>
         </motion.h1>
         <motion.p variants={fadeUp} style={{ fontFamily: "'Playfair Display', serif", fontStyle: 'italic', fontSize: '1.1rem', color: 'rgba(255,255,255,0.5)', marginBottom: '2.5rem', lineHeight: 1.6 }}>
           Since 2006 — Bengaluru's finest door manufacturing house.
@@ -123,14 +103,14 @@ const CinematicHero = () => {
 
 // ─── END-TO-END DOOR SOLUTIONS ───
 const services = [
-  { num: '01', title: 'Design Consultation',   desc: 'We begin by understanding your space, style and requirements in detail.' },
-  { num: '02', title: 'Material Selection',     desc: 'Choose from premium teak, veneer, laminate, WPC and more.' },
-  { num: '03', title: 'Custom Door Design',     desc: 'Our designers craft a door tailored precisely to your vision.' },
-  { num: '04', title: 'Manufacturing',          desc: 'Skilled artisans build every door with precision at our Bengaluru facility.' },
-  { num: '05', title: 'Precision Finishing',    desc: 'Hand-polished, lacquered and detailed to a flawless standard.' },
-  { num: '06', title: 'Quality Checking',       desc: 'Every door passes a rigorous multi-point quality inspection.' },
-  { num: '07', title: 'Delivery & Installation',desc: 'Safe, on-time delivery and professional installation at your site.' },
-  { num: '08', title: 'Project Support',        desc: 'We stay with you after handover — full after-sales support.' },
+  { num: '01', title: 'Design Consultation', desc: 'We begin by understanding your space, style and requirements in detail.' },
+  { num: '02', title: 'Material Selection', desc: 'Choose from premium teak, veneer, laminate, WPC and more.' },
+  { num: '03', title: 'Custom Door Design', desc: 'Our designers craft a door tailored precisely to your vision.' },
+  { num: '04', title: 'Manufacturing', desc: 'Skilled artisans build every door with precision at our Bengaluru facility.' },
+  { num: '05', title: 'Precision Finishing', desc: 'Hand-polished, lacquered and detailed to a flawless standard.' },
+  { num: '06', title: 'Quality Checking', desc: 'Every door passes a rigorous multi-point quality inspection.' },
+  { num: '07', title: 'Delivery & Installation', desc: 'Safe, on-time delivery and professional installation at your site.' },
+  { num: '08', title: 'Project Support', desc: 'We stay with you after handover — full after-sales support.' },
 ];
 
 const EndToEndSection = () => (
@@ -166,20 +146,20 @@ const EndToEndSection = () => (
 
 // ─── OUR PROCESS ───
 const processSteps = [
-  { step: '01', side: 'left',  title: 'Consultation',            desc: 'Understanding customer requirements, space dimensions and design needs in detail.' },
-  { step: '02', side: 'right', title: 'Design & Selection',      desc: 'Selecting the right wood species, finish, style, hardware and exact dimensions.' },
-  { step: '03', side: 'left',  title: 'Precision Manufacturing', desc: 'Expert craftsmen manufacture the door and frame with precision at our facility.' },
-  { step: '04', side: 'right', title: 'Finishing',               desc: 'Premium polishing, lacquering and hand-detailing to a flawless standard.' },
-  { step: '05', side: 'left',  title: 'Quality Check',           desc: 'Every door is carefully inspected across multiple quality checkpoints before dispatch.' },
+  { step: '01', side: 'left', title: 'Consultation', desc: 'Understanding customer requirements, space dimensions and design needs in detail.' },
+  { step: '02', side: 'right', title: 'Design & Selection', desc: 'Selecting the right wood species, finish, style, hardware and exact dimensions.' },
+  { step: '03', side: 'left', title: 'Precision Manufacturing', desc: 'Expert craftsmen manufacture the door and frame with precision at our facility.' },
+  { step: '04', side: 'right', title: 'Finishing', desc: 'Premium polishing, lacquering and hand-detailing to a flawless standard.' },
+  { step: '05', side: 'left', title: 'Quality Check', desc: 'Every door is carefully inspected across multiple quality checkpoints before dispatch.' },
   { step: '06', side: 'right', title: 'Delivery & Installation', desc: 'Safe, on-time delivery and professional installation carried out at your site.' },
-  { step: '07', side: 'left',  title: 'Final Handover',          desc: 'Complete project documentation, walkthrough and full after-sales support.' },
+  { step: '07', side: 'left', title: 'Final Handover', desc: 'Complete project documentation, walkthrough and full after-sales support.' },
 ];
 
 const ProcessSection = () => (
   <section style={{ padding: 'var(--py-section) var(--px-main)', background: 'var(--bg-light)', overflow: 'hidden' }}>
     <motion.div
       initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }} transition={{ duration: 0.8 }}
+      viewport={{ once: false }} transition={{ duration: 0.8 }}
       style={{ textAlign: 'center', marginBottom: '4rem' }}
     >
       <p style={{ fontSize: '0.72rem', letterSpacing: '4px', textTransform: 'uppercase', color: 'var(--primary-orange)', fontWeight: 700, marginBottom: '0.75rem' }}>How We Work</p>
@@ -191,7 +171,7 @@ const ProcessSection = () => (
       <motion.div
         initial={{ scaleY: 0 }}
         whileInView={{ scaleY: 1 }}
-        viewport={{ once: true, amount: 0.05 }}
+        viewport={{ once: false, amount: 0.05 }}
         transition={{ duration: 2.2, ease: [0.22, 1, 0.36, 1] }}
         style={{
           position: 'absolute', left: '50%', top: 0, bottom: 0,
@@ -205,7 +185,7 @@ const ProcessSection = () => (
           key={i}
           initial={{ opacity: 0, x: s.side === 'left' ? -40 : 40 }}
           whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, amount: 0.35 }}
+          viewport={{ once: false, amount: 0.35 }}
           transition={{ duration: 0.85, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
           style={{
             display: 'flex',
@@ -218,7 +198,7 @@ const ProcessSection = () => (
           <motion.div
             initial={{ scale: 0, opacity: 0 }}
             whileInView={{ scale: 1, opacity: 1 }}
-            viewport={{ once: true, amount: 0.5 }}
+            viewport={{ once: false, amount: 0.5 }}
             transition={{ duration: 0.5, delay: 0.2, ease: [0.34, 1.56, 0.64, 1] }}
             style={{
               position: 'absolute', left: '50%', top: '1.4rem',
@@ -232,19 +212,19 @@ const ProcessSection = () => (
           />
 
           {/* Content card */}
-          <div style={{ 
-            width: '44%', 
-            padding: 'clamp(1rem, 4vw, 1.8rem) clamp(0.75rem, 3vw, 2rem)', 
-            background: '#fff', 
-            borderRadius: '8px', 
-            border: '1px solid #e2e8f0', 
-            boxShadow: '0 4px 20px rgba(0,0,0,0.04)' 
+          <div style={{
+            width: '44%',
+            padding: 'clamp(1rem, 4vw, 1.8rem) clamp(0.75rem, 3vw, 2rem)',
+            background: '#fff',
+            borderRadius: '8px',
+            border: '1px solid #e2e8f0',
+            boxShadow: '0 4px 20px rgba(0,0,0,0.04)'
           }}>
             <p style={{ fontSize: 'clamp(0.55rem, 2vw, 0.65rem)', letterSpacing: '3px', textTransform: 'uppercase', color: 'var(--primary-orange)', fontWeight: 700, marginBottom: '0.5rem' }}>Step {s.step}</p>
-            <h3 style={{ 
-              fontFamily: "'Playfair Display', serif", 
-              fontSize: 'clamp(0.9rem, 3.5vw, 1.2rem)', 
-              color: 'var(--primary-blue)', 
+            <h3 style={{
+              fontFamily: "'Playfair Display', serif",
+              fontSize: 'clamp(0.9rem, 3.5vw, 1.2rem)',
+              color: 'var(--primary-blue)',
               marginBottom: '0.6rem',
               wordBreak: 'normal',
               overflowWrap: 'normal',
@@ -342,7 +322,7 @@ const ReviewsSection = () => (
 // ─── HOME GALLERY PREVIEW ───
 const GalleryPreview = () => {
   const [isMobile, setIsMobile] = useState(typeof window !== 'undefined' ? window.innerWidth < 768 : false);
-  
+
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
     window.addEventListener('resize', checkMobile);
@@ -388,8 +368,8 @@ const GalleryPreview = () => {
           return (
             <motion.div
               key={`${i}-${isMobile}`}
-              initial={{ 
-                opacity: 0, 
+              initial={{
+                opacity: 0,
                 ...(isMobile ? { y: 30 } : {
                   rotateY: isLeftDoor ? 90 : -90, // Start swung open
                   transformOrigin: isLeftDoor ? 'left center' : 'right center'
@@ -397,15 +377,15 @@ const GalleryPreview = () => {
               }}
               whileInView={{ opacity: 1, ...(isMobile ? { y: 0 } : { rotateY: 0 }) }}
               viewport={{ once: true, amount: 0.2 }}
-              transition={{ 
-                duration: isMobile ? 0.7 : 1.1, 
-                delay: i * (isMobile ? 0.05 : 0.1), 
-                ease: [0.22, 1, 0.36, 1] 
+              transition={{
+                duration: isMobile ? 0.7 : 1.1,
+                delay: i * (isMobile ? 0.05 : 0.1),
+                ease: [0.22, 1, 0.36, 1]
               }}
               style={{
-                overflow: 'hidden', 
+                overflow: 'hidden',
                 borderRadius: '6px',
-                height: '240px', 
+                height: '240px',
                 boxShadow: '0 15px 35px rgba(0,0,0,0.1)'
               }}
             >
@@ -640,7 +620,7 @@ const Home = () => {
             <Link to="/contact" className="btn btn-orange" style={{ padding: '0.9rem 2.2rem', fontSize: '1rem' }}>
               Contact Us Now
             </Link>
-            <a href="https://wa.me/918971794549" target="_blank" rel="noreferrer" className="btn btn-outline" style={{ padding: '0.9rem 2.2rem', fontSize: '1rem' }}>
+            <a href="https://wa.me/918971794949" target="_blank" rel="noreferrer" className="btn btn-outline" style={{ padding: '0.9rem 2.2rem', fontSize: '1rem' }}>
               Chat on WhatsApp
             </a>
           </div>

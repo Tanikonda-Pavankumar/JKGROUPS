@@ -1,6 +1,7 @@
 import AnimatedPage from "../components/AnimatedPage";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
+import Typewriter from "../components/Typewriter";
 
 const faqs = [
   {
@@ -174,7 +175,7 @@ const FAQs = () => (
           lineHeight: 1.15,
         }}
       >
-        Frequently Asked Questions
+        <Typewriter text="Frequently Asked Questions" delay={300} />
       </motion.h1>
       <motion.p
         initial={{ opacity: 0, y: 15 }}

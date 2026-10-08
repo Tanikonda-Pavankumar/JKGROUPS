@@ -2,113 +2,7 @@ import AnimatedPage from '../components/AnimatedPage';
 import { motion } from 'framer-motion';
 import { useParams, Link } from 'react-router-dom';
 import { useState } from 'react';
-import imgTeak from '../product images/TEAK WOOD DOORS.png';
-import imgVeneer from '../product images/VENEER DOORS.png';
-import imgLaminate from '../product images/LAMINATE DOORS.png';
-import imgWpc from '../product images/WPC DOORS Premium.png';
-import imgWpcFrames from '../product images/WPC FRAMES.png';
-import imgPlywood from '../product images/PLYWOOD.png';
-
-
-
-const products = [
-  {
-    id: 1,
-    title: 'Teak Wood Doors',
-    description: 'Premium teakwood for luxury & durability.',
-    category: 'Teak Wood',
-    image: imgTeak,
-    tagline: 'Timeless Teak. Lasting Luxury.',
-    fullDescription: 'Our teak wood doors are crafted from the finest A-grade teak sourced sustainably. Known for its natural oil content, teak is inherently resistant to moisture, warping, and termites — making it the ultimate choice for both interior and exterior applications. Every door is hand-finished and polished to reveal the wood\'s rich, warm grain.',
-    features: ['Premium A-Grade Teak', 'Natural Oil Finish', 'Termite & Moisture Resistant', 'Available in Custom Sizes', 'Solid Core Construction', '10-Year Warranty'],
-    specs: { material: 'Solid Teak Wood', thickness: '35mm / 45mm', finish: 'Natural Polish / Lacquer', sizes: 'Standard & Custom', warranty: '10 Years' },
-    gallery: [
-      'https://images.unsplash.com/photo-1513694203232-719a280e022f?w=800&q=80',
-      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80',
-      'https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=800&q=80',
-    ]
-  },
-  {
-    id: 2,
-    title: 'Veneer Doors',
-    description: 'Natural wood veneer with modern design.',
-    category: 'Veneer',
-    image: imgVeneer,
-    tagline: 'The Elegance of Natural Wood. Redefined.',
-    fullDescription: 'Veneer doors combine the beauty of natural wood with modern engineering. A thin slice of premium wood is bonded to a stable engineered core, giving you the authentic look and texture of solid wood at superior dimensional stability. Available in teak, oak, walnut, and wenge veneers.',
-    features: ['Real Wood Veneer Surface', 'Stable Engineered Core', 'Multiple Wood Species', 'Consistent Grain Pattern', 'Smooth Factory Finish', 'Eco-Friendly Manufacturing'],
-    specs: { material: 'Veneer on MDF/Plywood Core', thickness: '32mm / 40mm', finish: 'PU / NC Lacquer', sizes: 'Standard & Custom', warranty: '7 Years' },
-    gallery: [
-      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80',
-      'https://images.unsplash.com/photo-1615876234886-fdba0fdf81eb?w=800&q=80',
-      'https://images.unsplash.com/photo-1513694203232-719a280e022f?w=800&q=80',
-    ]
-  },
-  {
-    id: 3,
-    title: 'Laminate Doors',
-    description: 'Stylish, durable and low maintenance.',
-    category: 'Laminate',
-    image: imgLaminate,
-    tagline: 'Bold Designs. Zero Compromise.',
-    fullDescription: 'Our laminate doors offer a perfect balance of style, durability, and affordability. High-pressure laminates (HPL) are fused onto a premium core, offering scratch resistance, easy cleaning, and an incredible variety of textures — from wood grain to solid colors and contemporary patterns.',
-    features: ['High-Pressure Laminate (HPL)', 'Scratch & Stain Resistant', '200+ Colors & Textures', 'Easy to Clean', 'Budget-Friendly', 'ISI Certified'],
-    specs: { material: 'HPL on Plywood/MDF Core', thickness: '30mm / 38mm', finish: 'Matte / Gloss / Texture', sizes: 'Standard & Custom', warranty: '5 Years' },
-    gallery: [
-      'https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=800&q=80',
-      'https://images.unsplash.com/photo-1600607688066-890987f18a86?w=800&q=80',
-      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80',
-    ]
-  },
-  {
-    id: 4,
-    title: 'WPC Doors',
-    description: 'Waterproof and termite resistant doors.',
-    category: 'WPC',
-    image: imgWpc,
-    tagline: 'Built to Withstand. Designed to Impress.',
-    fullDescription: 'Wood-Plastic Composite (WPC) doors are the future of modern door engineering. These doors are completely waterproof, 100% termite proof, and will never warp or swell — making them ideal for bathrooms, kitchens, and humid coastal climates. Zero maintenance required.',
-    features: ['100% Waterproof', 'Termite & Borer Proof', 'Will Not Warp or Swell', 'Zero Maintenance', 'Eco-Friendly (Recycled Content)', 'Fire Retardant Option'],
-    specs: { material: 'Wood-Plastic Composite', thickness: '35mm', finish: 'Factory Laminated', sizes: 'Standard & Custom', warranty: '10 Years' },
-    gallery: [
-      'https://images.unsplash.com/photo-1615876234886-fdba0fdf81eb?w=800&q=80',
-      'https://images.unsplash.com/photo-1513694203232-719a280e022f?w=800&q=80',
-      'https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=800&q=80',
-    ]
-  },
-  {
-    id: 5,
-    title: 'Premium Door Frames',
-    description: 'Sturdy frames crafted for a perfect fit.',
-    category: 'Frames',
-    image: imgWpcFrames,
-    tagline: 'The Foundation of Every Great Door.',
-    fullDescription: 'A great door deserves an equally great frame. Our door frames are engineered for structural integrity and a perfect fit. Available in teak, hardwood, and WPC — our frames are pre-drilled and ready for installation. Precision milling ensures consistent profiles and seamless door alignment.',
-    features: ['Precision Milled Profiles', 'Available in Teak / Hardwood / WPC', 'Pre-Drilled for Hardware', 'Perfect Door Alignment', 'Anti-Warp Treatment', 'Custom Arch Profiles Available'],
-    specs: { material: 'Teak / Hardwood / WPC', thickness: '75mm / 100mm / 125mm', finish: 'Polish / Laminate', sizes: 'Standard & Custom', warranty: '7 Years' },
-    gallery: [
-      'https://images.unsplash.com/photo-1600607688066-890987f18a86?w=800&q=80',
-      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80',
-      'https://images.unsplash.com/photo-1615876234886-fdba0fdf81eb?w=800&q=80',
-    ]
-  },
-  {
-    id: 6,
-    title: 'Marine Plywood',
-    description: 'High-grade plywood for superior strength.',
-    category: 'Plywood',
-    image: imgPlywood,
-    tagline: 'The Core of Premium Craftsmanship.',
-    fullDescription: 'Our marine-grade plywood is the backbone of premium door and interior manufacturing. Made from hardwood veneers bonded with waterproof adhesive under high pressure, our plywood offers exceptional strength, uniform thickness, and a void-free core — ideal for door skins, furniture, and interior panelling.',
-    features: ['IS:710 Marine Grade Certified', 'Waterproof BWP Adhesive', 'Void-Free Core', 'Calibrated Thickness', 'Available in Multiple Grades', 'Termite Resistant'],
-    specs: { material: 'Hardwood Veneers + BWP Adhesive', thickness: '6mm to 25mm', finish: 'Natural / Sanded', sizes: '8x4 ft Standard', warranty: '5 Years' },
-    gallery: [
-      'https://images.unsplash.com/photo-1546484396-fb3fc6f95f98?w=800&q=80',
-      'https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=800&q=80',
-      'https://images.unsplash.com/photo-1600607688066-890987f18a86?w=800&q=80',
-    ]
-  }
-];
+import { products } from '../productsData';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 28 },
@@ -291,7 +185,7 @@ const ProductDetail = () => {
                 Get a Quote <span className="arrow">→</span>
               </Link>
               <a
-                href="https://wa.me/918971794549"
+                href="https://wa.me/918971794949"
                 target="_blank"
                 rel="noreferrer"
                 className="btn btn-outline"

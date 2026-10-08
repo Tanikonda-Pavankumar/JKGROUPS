@@ -1,5 +1,6 @@
 import AnimatedPage from "../components/AnimatedPage";
 import { motion } from "framer-motion";
+import Typewriter from "../components/Typewriter";
 
 // ─── SVG Icons ───
 const IconTrophy = () => (
@@ -211,7 +212,7 @@ const About = () => {
             lineHeight: 1.15,
           }}
         >
-          About Us
+          <Typewriter text="About Us" delay={300} />
         </motion.h1>
 
         <motion.p

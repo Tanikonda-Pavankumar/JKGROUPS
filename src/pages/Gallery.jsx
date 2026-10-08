@@ -2,67 +2,18 @@ import AnimatedPage from '../components/AnimatedPage';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useCallback, useEffect } from 'react';
 import { createPortal } from 'react-dom';
+import Typewriter from '../components/Typewriter';
 
-// ─── Import ALL gallery images ───
-import g1 from '../gallery/WhatsApp Image 2026-10-02 at 11.09.20 AM.jpeg';
-import g2 from '../gallery/WhatsApp Image 2026-10-02 at 11.09.20 AM (1).jpeg';
-import g3 from '../gallery/WhatsApp Image 2026-10-02 at 11.09.20 AM (2).jpeg';
-import g4 from '../gallery/WhatsApp Image 2026-10-02 at 11.09.20 AM (3).jpeg';
-import g5 from '../gallery/WhatsApp Image 2026-10-02 at 11.09.20 AM (4).jpeg';
-import g6 from '../gallery/WhatsApp Image 2026-10-02 at 11.09.20 AM (5).jpeg';
-import g7 from '../gallery/WhatsApp Image 2026-10-02 at 11.09.20 AM (6).jpeg';
-import g8 from '../gallery/WhatsApp Image 2026-10-02 at 11.09.21 AM.jpeg';
-import g9 from '../gallery/WhatsApp Image 2026-10-02 at 11.09.21 AM (1).jpeg';
-import g10 from '../gallery/WhatsApp Image 2026-10-02 at 11.09.21 AM (2).jpeg';
-import g11 from '../gallery/WhatsApp Image 2026-10-02 at 11.09.21 AM (3).jpeg';
-import g12 from '../gallery/WhatsApp Image 2026-10-02 at 11.09.21 AM (4).jpeg';
-import g13 from '../gallery/WhatsApp Image 2026-10-02 at 11.09.21 AM (5).jpeg';
-import g14 from '../gallery/WhatsApp Image 2026-10-02 at 11.09.21 AM (6).jpeg';
-import g15 from '../gallery/WhatsApp Image 2026-10-02 at 11.09.21 AM (7).jpeg';
-import g16 from '../gallery/WhatsApp Image 2026-10-02 at 11.09.21 AM (8).jpeg';
-import g17 from '../gallery/WhatsApp Image 2026-10-02 at 11.09.21 AM (9).jpeg';
-import g18 from '../gallery/WhatsApp Image 2026-10-02 at 11.09.21 AM (10).jpeg';
-import g19 from '../gallery/WhatsApp Image 2026-10-02 at 11.09.21 AM (11).jpeg';
-import g20 from '../gallery/WhatsApp Image 2026-10-02 at 11.09.21 AM (12).jpeg';
-import g21 from '../gallery/WhatsApp Image 2026-10-02 at 11.09.21 AM (13).jpeg';
-import g22 from '../gallery/WhatsApp Image 2026-10-02 at 11.09.21 AM (14).jpeg';
-import g23 from '../gallery/WhatsApp Image 2026-10-02 at 11.09.21 AM (15).jpeg';
-import g24 from '../gallery/WhatsApp Image 2026-10-02 at 11.09.21 AM (16).jpeg';
-import g25 from '../gallery/WhatsApp Image 2026-10-02 at 11.09.21 AM (17).jpeg';
-import g26 from '../gallery/WhatsApp Image 2026-10-02 at 11.09.21 AM (18).jpeg';
-import g27 from '../gallery/WhatsApp Image 2026-10-02 at 11.09.21 AM (19).jpeg';
-import g28 from '../gallery/WhatsApp Image 2026-10-02 at 11.09.21 AM (20).jpeg';
-import g29 from '../gallery/WhatsApp Image 2026-10-02 at 11.09.21 AM (21).jpeg';
-import g30 from '../gallery/WhatsApp Image 2026-10-02 at 11.09.21 AM (22).jpeg';
-import g31 from '../gallery/WhatsApp Image 2026-10-02 at 11.09.21 AM (23).jpeg';
-import g32 from '../gallery/WhatsApp Image 2026-10-02 at 11.09.21 AM (24).jpeg';
-import g33 from '../gallery/WhatsApp Image 2026-10-02 at 11.09.21 AM (25).jpeg';
-import g34 from '../gallery/WhatsApp Image 2026-10-02 at 11.09.21 AM (26).jpeg';
-import g35 from '../gallery/WhatsApp Image 2026-10-02 at 11.09.21 AM (27).jpeg';
-import g36 from '../gallery/WhatsApp Image 2026-10-02 at 11.09.21 AM (28).jpeg';
-import g37 from '../gallery/WhatsApp Image 2026-10-02 at 11.09.21 AM (29).jpeg';
-import g38 from '../gallery/WhatsApp Image 2026-10-02 at 11.09.21 AM (30).jpeg';
-import g39 from '../gallery/WhatsApp Image 2026-10-02 at 11.09.21 AM (31).jpeg';
-import g40 from '../gallery/WhatsApp Image 2026-10-02 at 11.09.21 AM (32).jpeg';
-import g41 from '../gallery/WhatsApp Image 2026-10-02 at 11.09.21 AM (33).jpeg';
-import g42 from '../gallery/WhatsApp Image 2026-10-02 at 11.09.21 AM (34).jpeg';
-import g43 from '../gallery/WhatsApp Image 2026-10-02 at 11.09.21 AM (35).jpeg';
+// ─── Import ALL gallery images dynamically ───
+const imageModules = import.meta.glob('../gallery/*.{png,jpg,jpeg,webp}', { eager: true, import: 'default' });
+let images = Object.values(imageModules);
 
-const images = [
-  g35, g36, g37, g38, g39, g40,
-  g41, g42, g43, g15, g16, g17, g18, g19, g20,
-  g21, g22, g23, g24, g25, g26, g27, g28, g29, g30,
-  g31, g32, g33, g34,
-  g1, g2, g3, g4, g5, g6, g7, g8, g9, g10,
-  g11, g12, g13, g14,
-];
+// Add an extra door image to the end of the array to fill the empty space at the bottom left
+if (images.length > 0) {
+  images = [...images, images[0]];
+}
 
-// Split into 4 masonry columns
-const buildColumns = (imgs, count = 4) => {
-  const cols = Array.from({ length: count }, () => []);
-  imgs.forEach((img, i) => cols[i % count].push({ src: img, idx: i }));
-  return cols;
-};
+// No need for buildColumns
 
 const Gallery = () => {
   const [lightbox, setLightbox] = useState(null); // index
@@ -78,8 +29,6 @@ const Gallery = () => {
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
-
-  const columns = buildColumns(images, colCount);
 
   const openLightbox = useCallback((idx) => setLightbox(idx), []);
   const closeLightbox = useCallback(() => setLightbox(null), []);
@@ -103,7 +52,7 @@ const Gallery = () => {
         </motion.p>
         <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.1 }}
           style={{ fontSize: '1.8rem', textTransform: 'uppercase', letterSpacing: '4px', color: 'var(--primary-white)', marginBottom: '1rem', fontWeight: 700 }}>
-          Gallery
+          <Typewriter text="Gallery" delay={300} />
         </motion.p>
         <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.2 }}
           style={{ fontSize: '1.1rem', color: '#e2e8f0', fontFamily: "'Playfair Display', serif", fontStyle: 'italic' }}>
@@ -114,49 +63,59 @@ const Gallery = () => {
 
       {/* ─── Masonry Grid ─── */}
       <div style={{ backgroundColor: '#ffffff', padding: 'var(--py-section) var(--px-main)' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: `repeat(${colCount}, 1fr)`, gap: colCount === 2 ? '8px' : '16px', maxWidth: '1400px', margin: '0 auto' }}>
-          {columns.map((col, ci) => (
-            <div key={ci} style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-              {col.map(({ src, idx }, ii) => (
-                <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, scale: 0.9, y: 50 }}
-                  whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.1 }}
-                  transition={{
-                    duration: 0.9,
-                    delay: (ci * 0.1) + (ii * 0.05),
-                    ease: [0.22, 1, 0.36, 1],
-                  }}
-                  whileHover={{ scale: 1.02 }}
-                  onClick={() => openLightbox(idx)}
-                  style={{ position: 'relative', overflow: 'hidden', borderRadius: '8px', cursor: 'zoom-in', lineHeight: 0 }}
-                >
-                  <img
-                    src={src}
-                    alt={`JK Group gallery ${idx + 1}`}
-                    loading="lazy"
-                    style={{ width: '100%', display: 'block', objectFit: 'cover', transition: 'transform 0.6s ease' }}
-                  />
-                  {/* Hover overlay */}
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    whileHover={{ opacity: 1 }}
-                    transition={{ duration: 0.3 }}
-                    style={{
-                      position: 'absolute', inset: 0,
-                      background: 'linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 60%)',
-                      display: 'flex', alignItems: 'flex-end', padding: '1rem',
-                    }}
-                  >
-                    <span style={{ color: 'white', fontSize: '0.9rem', fontWeight: 600, letterSpacing: '0.5px' }}>
-                      View Image
-                    </span>
-                    <span style={{ color: 'var(--primary-orange)', marginLeft: 'auto', fontSize: '1.2rem' }}>⊕</span>
-                  </motion.div>
-                </motion.div>
-              ))}
-            </div>
+        <div style={{ 
+          columnCount: colCount, 
+          columnGap: colCount === 2 ? '8px' : '16px', 
+          maxWidth: '1400px', 
+          margin: '0 auto' 
+        }}>
+          {images.map((src, idx) => (
+            <motion.div
+              key={idx}
+              className="gallery-img"
+              initial={{ opacity: 0, scale: 0.8, y: 40 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.05 }}
+              transition={{
+                duration: 0.6,
+                delay: (idx % 8) * 0.08,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              whileHover={{ scale: 1.03, filter: 'brightness(1.05)' }}
+              onClick={() => openLightbox(idx)}
+              style={{ 
+                position: 'relative', 
+                overflow: 'hidden', 
+                borderRadius: '8px', 
+                cursor: 'zoom-in', 
+                marginBottom: colCount === 2 ? '8px' : '16px',
+                breakInside: 'avoid',
+                display: 'block'
+              }}
+            >
+              <img
+                src={src}
+                alt={`JK Group gallery ${idx + 1}`}
+                loading="lazy"
+                style={{ width: '100%', display: 'block', objectFit: 'cover', transition: 'transform 0.5s ease' }}
+              />
+              {/* Hover overlay */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                whileHover={{ opacity: 1 }}
+                transition={{ duration: 0.25 }}
+                style={{
+                  position: 'absolute', inset: 0,
+                  background: 'linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 60%)',
+                  display: 'flex', alignItems: 'flex-end', padding: '1rem',
+                }}
+              >
+                <span style={{ color: 'white', fontSize: '0.9rem', fontWeight: 600, letterSpacing: '0.5px' }}>
+                  View Image
+                </span>
+                <span style={{ color: 'var(--primary-orange)', marginLeft: 'auto', fontSize: '1.2rem' }}>⊕</span>
+              </motion.div>
+            </motion.div>
           ))}
         </div>
       </div>

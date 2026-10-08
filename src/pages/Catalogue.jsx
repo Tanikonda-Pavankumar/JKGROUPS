@@ -1,5 +1,6 @@
 import AnimatedPage from '../components/AnimatedPage';
 import { motion, AnimatePresence } from 'framer-motion';
+import Typewriter from '../components/Typewriter';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -382,7 +383,7 @@ const Catalogue = () => {
               letterSpacing: '-0.5px',
             }}
           >
-            Catalogue
+            <Typewriter text="Catalogue" delay={500} />
           </motion.h1>
 
           <motion.p
@@ -591,7 +592,7 @@ const Catalogue = () => {
             </Link>
 
             <a
-              href="https://wa.me/918971794549"
+              href="https://wa.me/918971794949"
               target="_blank"
               rel="noreferrer"
               style={{

@@ -20,6 +20,8 @@ const AnimatedNumber = ({ value, suffix }) => {
   useEffect(() => {
     if (inView) {
       motionValue.set(value);
+    } else {
+      motionValue.set(0);
     }
   }, [inView, value, motionValue]);
 

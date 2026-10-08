@@ -1,5 +1,6 @@
 import AnimatedPage from "../components/AnimatedPage";
 import { motion } from "framer-motion";
+import Typewriter from "../components/Typewriter";
 
 const IconFactory = () => (
   <svg
@@ -181,7 +182,7 @@ const WhyJKGroup = () => (
           lineHeight: 1.15,
         }}
       >
-        Why Choose JK Group?
+        <Typewriter text="Why Choose JK Group?" delay={300} />
       </motion.h1>
       <motion.p
         initial={{ opacity: 0, y: 15 }}

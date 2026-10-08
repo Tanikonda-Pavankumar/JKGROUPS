@@ -43,11 +43,11 @@ const Footer = () => {
             </li>
             <li style={{ marginBottom: '1rem' }}>
               <strong style={{ color: 'white', display: 'block', marginBottom: '0.2rem' }}>Call Us</strong>
-              8971794549 | 9380668222
+              89717 94949
             </li>
             <li style={{ marginBottom: '1rem' }}>
               <strong style={{ color: 'white', display: 'block', marginBottom: '0.2rem' }}>WhatsApp</strong>
-              8971794549
+              89717 94949
             </li>
             <li>
               <strong style={{ color: 'white', display: 'block', marginBottom: '0.2rem' }}>Email</strong>
