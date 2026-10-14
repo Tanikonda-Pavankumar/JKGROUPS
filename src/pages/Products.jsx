@@ -8,6 +8,7 @@ import { products } from '../productsData';
 const filters = [
   "All",
   "Doors",
+  "Pooja Doors",
   "Frames",
   "WPC",
   "Materials",
@@ -20,6 +21,17 @@ const Products = () => {
   const filteredProducts =
     activeFilter === "All"
       ? products
+      : activeFilter === "Pooja Doors"
+      ? products.filter(
+          (p) =>
+            p.title.toLowerCase().includes("pooja") ||
+            p.category === "Pooja Doors" ||
+            p.subCategory === "Pooja Doors"
+        )
+      : activeFilter === "Doors"
+      ? products.filter(
+          (p) => p.category === "Doors" || p.subCategory === "Pooja Doors"
+        )
       : products.filter((p) => p.category === activeFilter);
 
   return (

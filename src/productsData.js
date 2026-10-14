@@ -1,10 +1,21 @@
-import imgTeak from './product images/TEAK WOOD DOORS.png';
-import imgVeneer from './product images/VENEER DOORS.png';
-import imgLaminate from './product images/LAMINATE DOORS.png';
-import imgWpc from './product images/WPC DOORS Premium.png';
+import imgWoodenFrames from './product images/WOODEN FRAMES.png';
+import imgTeak from './product images/Teak Wood Doors.jpg';
+import imgTeakOld from './product images/TEAK WOOD DOORS.png';
+import imgPoojaDoors from './product images/pooja door.png';
+import imgVeneer from './product images/Veneer Doors.jpg';
+import imgVeneerOld from './product images/VENEER DOORS.png';
+import imgLaminate from './product images/Laminate Doors.jpg';
+import imgLaminateOld from './product images/LAMINATE DOORS.png';
+import imgMicroCoated from './product images/Micro Coated Doors.png';
+import imgMemran from './product images/Memran Doors.png';
+import imgWpc from './product images/WPC Door and Frames.png';
+import imgWpcOld from './product images/WPC DOORS Premium.png';
 import imgWpcFrames from './product images/WPC FRAMES.png';
 import imgPlywood from './product images/PLYWOOD.png';
-import imgLocks from './product images/hands and locks.png';
+import imgBlockBoard from './product images/Block Board Door.png';
+import imgLaminates from './product images/Laminates door.jpg';
+import imgLocks from './product images/Locks and Handles.jpg';
+import imgLocksOld from './product images/hands and locks.png';
 
 // Import real gallery images
 import g1 from './gallery/WhatsApp Image 2026-10-08 at 10.04.11 AM.jpeg';
@@ -29,12 +40,12 @@ export const products = [
     title: "Wooden Frames",
     description: "Premium wooden door frames.",
     category: "Frames",
-    image: imgWpcFrames,
+    image: imgWoodenFrames,
     tagline: "The Foundation of Every Great Door.",
     fullDescription: "A great door deserves an equally great frame. Our wooden frames are engineered for structural integrity and a perfect fit.",
     features: ["Precision Milled Profiles", "Available in Teak / Hardwood", "Pre-Drilled for Hardware"],
     specs: { material: "Hardwood/Teak", thickness: "Standard", sizes: "Custom" },
-    gallery: commonGallery
+    gallery: [imgWoodenFrames, imgWpcFrames, ...commonGallery]
   },
   {
     id: 2,
@@ -46,7 +57,27 @@ export const products = [
     fullDescription: "Our teak wood doors are crafted from the finest A-grade teak sourced sustainably.",
     features: ["Premium A-Grade Teak", "Natural Oil Finish", "Termite Resistant"],
     specs: { material: "Solid Teak Wood", thickness: "35mm / 45mm", sizes: "Custom" },
-    gallery: alternativeGallery
+    gallery: [imgTeak, imgTeakOld, ...alternativeGallery]
+  },
+  {
+    id: 13,
+    title: "Pooja Doors",
+    description: "Sacred temple doors with Om & Lotus carvings, acoustic brass bells & ambient backlight.",
+    category: "Doors",
+    subCategory: "Pooja Doors",
+    image: imgPoojaDoors,
+    tagline: "Divine Elegance for Auspicious Living.",
+    fullDescription: "Specially crafted Pooja Mandir doors manufactured from seasoned teak wood. Designed to welcome positive energy into your home, featuring auspicious Om and Lotus carvings, warm vertical glow slits, acoustic pure brass temple bells, precision double-leaf shutter construction, and premium architectural brass handles.",
+    features: [
+      "Auspicious Om & Lotus Handcrafted Carvings",
+      "Seasoned Teak Wood Core & Frame",
+      "Warm Ambient Light Slit / Backlit Design",
+      "Acoustic Pure Brass Bells Inset Options",
+      "Traditional Double-Leaf Mandir Shutter",
+      "100% Vastu Compliant Dimensions & Detailing"
+    ],
+    specs: { material: "Solid Teak Wood & Brass Accents", thickness: "35mm / 45mm", sizes: "Custom to Mandir Dimensions", finish: "Natural Teak Oil / Satin PU" },
+    gallery: [imgPoojaDoors, g10, g1, g12]
   },
   {
     id: 3,
@@ -58,7 +89,7 @@ export const products = [
     fullDescription: "Veneer doors combine the beauty of natural wood with modern engineering.",
     features: ["Real Wood Veneer Surface", "Stable Engineered Core", "Multiple Wood Species"],
     specs: { material: "Veneer on Core", thickness: "32mm / 40mm", sizes: "Custom" },
-    gallery: commonGallery
+    gallery: [imgVeneer, imgVeneerOld, ...commonGallery]
   },
   {
     id: 4,
@@ -70,19 +101,19 @@ export const products = [
     fullDescription: "Our laminate doors offer a perfect balance of style, durability, and affordability.",
     features: ["High-Pressure Laminate", "Scratch Resistant", "Easy to Clean"],
     specs: { material: "HPL on Plywood Core", thickness: "30mm / 38mm", sizes: "Custom" },
-    gallery: alternativeGallery
+    gallery: [imgLaminate, imgLaminateOld, ...alternativeGallery]
   },
   {
     id: 5,
     title: "Micro Coated Doors",
     description: "Premium micro coated finish.",
     category: "Doors",
-    image: g7,
+    image: imgMicroCoated,
     tagline: "Modern Precision Coating.",
     fullDescription: "High-quality micro coated doors offering extreme durability and an ultra-smooth finish.",
     features: ["Micro Coated Surface", "Moisture Resistant", "Smooth Finish"],
     specs: { material: "Coated Wood", thickness: "Standard", sizes: "Custom" },
-    gallery: commonGallery
+    gallery: [imgMicroCoated, ...commonGallery]
   },
   {
     id: 6,
@@ -101,12 +132,12 @@ export const products = [
     title: "Memran Doors",
     description: "Membrane pressed doors with stunning profiles.",
     category: "Doors",
-    image: g9,
+    image: imgMemran,
     tagline: "Seamless Membrane Finish.",
     fullDescription: "Membrane doors are manufactured by pressing PVC foil onto routed flush doors.",
     features: ["PVC Membrane Foil", "Seamless Edges", "Moisture Resistant"],
     specs: { material: "Membrane on MDF", thickness: "Standard", sizes: "Custom" },
-    gallery: commonGallery
+    gallery: [imgMemran, ...commonGallery]
   },
   {
     id: 8,
@@ -118,7 +149,7 @@ export const products = [
     fullDescription: "Wood-Plastic Composite (WPC) doors and frames are the future of modern engineering.",
     features: ["100% Waterproof", "Termite Proof", "Will Not Warp"],
     specs: { material: "WPC", thickness: "35mm", sizes: "Custom" },
-    gallery: alternativeGallery
+    gallery: [imgWpc, imgWpcOld, imgWpcFrames, ...alternativeGallery]
   },
   {
     id: 9,
@@ -130,31 +161,31 @@ export const products = [
     fullDescription: "Premium grade plywood available in various thicknesses for all woodworking needs.",
     features: ["Borer & Termite Proof", "High Core Density", "ISI Certified"],
     specs: { material: "Hardwood Layers", thickness: "18mm / 19mm", sizes: "8x4 ft" },
-    gallery: commonGallery
+    gallery: [imgPlywood, ...commonGallery]
   },
   {
     id: 10,
     title: "Block Board",
     description: "Sturdy block boards for heavy furniture.",
     category: "Materials",
-    image: g10,
+    image: imgBlockBoard,
     tagline: "Solid Foundation.",
     fullDescription: "Premium block boards designed for extreme load bearing applications.",
     features: ["Solid Pine Wood Core", "Warp Resistant", "Excellent Screw Holding"],
     specs: { material: "Pine/Hardwood", thickness: "19mm / 25mm", sizes: "8x4 ft" },
-    gallery: alternativeGallery
+    gallery: [imgBlockBoard, ...alternativeGallery]
   },
   {
     id: 11,
     title: "Laminates",
     description: "Decorative laminate sheets.",
     category: "Materials",
-    image: g11,
+    image: imgLaminates,
     tagline: "Endless Design Possibilities.",
     fullDescription: "A wide variety of decorative laminates in wood grains, solid colors, and textures.",
     features: ["High Pressure", "Scratch Resistant", "Vibrant Designs"],
     specs: { material: "Paper & Resin", thickness: "1mm", sizes: "8x4 ft" },
-    gallery: commonGallery
+    gallery: [imgLaminates, ...commonGallery]
   },
   {
     id: 12,
@@ -166,6 +197,6 @@ export const products = [
     fullDescription: "High-security locks, mortise handles, hinges, and accessories.",
     features: ["Premium Finishes", "High Security", "Durable Mechanisms"],
     specs: { material: "Brass / SS / Zinc", finish: "Multiple", warranty: "5 Years" },
-    gallery: alternativeGallery
+    gallery: [imgLocks, imgLocksOld, ...alternativeGallery]
   }
 ];

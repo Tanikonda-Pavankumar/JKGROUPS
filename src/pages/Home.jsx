@@ -11,7 +11,8 @@ const previewImages = Object.values(imageModules).slice(0, 10);
 
 import { products } from '../productsData';
 
-const categories = products.slice(0, 8).map(p => ({
+const categories = products.slice(0, 10).map(p => ({
+  id: p.id,
   name: p.title,
   image: p.image
 }));
@@ -440,7 +441,7 @@ const Home = () => {
               transition={{ duration: 0.6, delay: idx * 0.06, ease: [0.22, 1, 0.36, 1] }}
               whileHover={{ y: -4, scale: 1.02 }}
             >
-              <Link to="/products" style={{ textDecoration: 'none', color: 'inherit', display: 'flex', flexDirection: 'column', height: '100%' }}>
+              <Link to={cat.id ? `/products/${cat.id}` : "/products"} style={{ textDecoration: 'none', color: 'inherit', display: 'flex', flexDirection: 'column', height: '100%' }}>
                 <img src={cat.image} alt={cat.name} />
                 <div style={{ padding: '0.8rem', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', flexGrow: 1, backgroundColor: 'white' }}>
                   <h3 style={{ margin: 0, padding: 0, paddingBottom: '0.3rem', fontSize: '0.85rem' }}>{cat.name}</h3>
