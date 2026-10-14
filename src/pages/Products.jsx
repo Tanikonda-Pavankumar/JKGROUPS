@@ -153,19 +153,33 @@ const Products = () => {
                   cursor: "pointer",
                 }}
               >
-                <Link to={`/products/${product.id}`} style={{ display: 'block', overflow: "hidden" }}>
+                <Link
+                  to={`/products/${product.id}`}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    overflow: 'hidden',
+                    height: 'clamp(280px, 32vw, 360px)',
+                    background: '#ffffff',
+                    padding: 0,
+                    textDecoration: 'none',
+                  }}
+                >
                   <motion.img
                     src={product.image}
                     alt={product.title}
-                    whileHover={{ scale: 1.07 }}
+                    whileHover={{ scale: 1.05 }}
                     transition={{
-                      duration: 0.55,
+                      duration: 0.4,
                       ease: [0.25, 0.46, 0.45, 0.94],
                     }}
                     style={{
                       width: "100%",
-                      height: "240px",
-                      objectFit: "cover",
+                      height: "100%",
+                      maxHeight: "100%",
+                      objectFit: "contain",
+                      objectPosition: "center",
                       display: "block",
                     }}
                   />

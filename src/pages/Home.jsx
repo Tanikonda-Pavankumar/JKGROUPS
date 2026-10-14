@@ -442,7 +442,9 @@ const Home = () => {
               whileHover={{ y: -4, scale: 1.02 }}
             >
               <Link to={cat.id ? `/products/${cat.id}` : "/products"} style={{ textDecoration: 'none', color: 'inherit', display: 'flex', flexDirection: 'column', height: '100%' }}>
-                <img src={cat.image} alt={cat.name} />
+                <div className="category-card-img-wrap">
+                  <img src={cat.image} alt={cat.name} />
+                </div>
                 <div style={{ padding: '0.8rem', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', flexGrow: 1, backgroundColor: 'white' }}>
                   <h3 style={{ margin: 0, padding: 0, paddingBottom: '0.3rem', fontSize: '0.85rem' }}>{cat.name}</h3>
                   <span style={{ fontSize: '0.7rem', color: 'var(--primary-orange)', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '4px' }}>

@@ -29,20 +29,20 @@ const ProductDetail = () => {
     <AnimatedPage>
       {/* Hero Banner */}
       <div style={{
-        position: 'relative', height: '50vh', overflow: 'hidden',
-        background: '#1a1a1a'
+        position: 'relative', height: 'clamp(220px, 32vh, 300px)', overflow: 'hidden',
+        background: '#120e0a'
       }}>
         <motion.img
           src={product.image}
           alt={product.title}
-          initial={{ scale: 1.1 }}
+          initial={{ scale: 1.08 }}
           animate={{ scale: 1 }}
           transition={{ duration: 8, ease: 'easeInOut' }}
-          style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', inset: 0, opacity: 0.55 }}
+          style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', inset: 0, opacity: 0.35, filter: 'blur(3px)' }}
         />
         <div style={{
           position: 'absolute', inset: 0,
-          background: 'linear-gradient(to top, rgba(10,7,5,0.9) 0%, rgba(10,7,5,0.2) 60%)'
+          background: 'linear-gradient(to top, rgba(10,7,5,0.95) 0%, rgba(10,7,5,0.6) 60%, rgba(10,7,5,0.3) 100%)'
         }} />
         <div style={{
           position: 'absolute', bottom: '2.5rem', left: 'var(--px-main)',
@@ -89,26 +89,46 @@ const ProductDetail = () => {
           </Link>
         </motion.div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 460px), 1fr))', gap: '4rem', alignItems: 'start' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 460px), 1fr))', gap: '3rem', alignItems: 'start' }}>
           
           {/* Left — Image Gallery */}
           <motion.div custom={1} variants={fadeUp} initial="hidden" animate="show">
             {/* Main Image */}
             <motion.div
               key={activeImg}
-              initial={{ opacity: 0, scale: 1.02 }}
+              initial={{ opacity: 0, scale: 0.98 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5 }}
-              style={{ borderRadius: '8px', overflow: 'hidden', marginBottom: '1rem', aspectRatio: '4/3' }}
+              transition={{ duration: 0.4 }}
+              style={{
+                borderRadius: '12px',
+                overflow: 'hidden',
+                marginBottom: '1rem',
+                height: 'clamp(380px, 62vh, 640px)',
+                width: '100%',
+                background: '#ffffff',
+                border: '1px solid #e2e8f0',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                padding: 0,
+                position: 'relative'
+              }}
             >
               <img
                 src={product.gallery[activeImg]}
                 alt={product.title}
-                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  maxHeight: '100%',
+                  objectFit: 'contain',
+                  objectPosition: 'center',
+                  display: 'block'
+                }}
               />
             </motion.div>
             {/* Thumbnails */}
-            <div style={{ display: 'flex', gap: '0.75rem' }}>
+            <div style={{ display: 'flex', gap: '0.75rem', overflowX: 'auto', paddingBottom: '0.5rem' }}>
               {product.gallery.map((img, i) => (
                 <motion.div
                   key={i}
@@ -116,14 +136,22 @@ const ProductDetail = () => {
                   whileHover={{ scale: 1.04 }}
                   whileTap={{ scale: 0.97 }}
                   style={{
-                    flex: 1, aspectRatio: '1', borderRadius: '6px', overflow: 'hidden',
+                    flex: '0 0 72px',
+                    height: '96px',
+                    borderRadius: '8px',
+                    overflow: 'hidden',
                     cursor: 'pointer',
-                    border: activeImg === i ? '2px solid var(--primary-orange)' : '2px solid transparent',
-                    opacity: activeImg === i ? 1 : 0.6,
-                    transition: 'opacity 0.3s, border-color 0.3s'
+                    border: activeImg === i ? '2px solid var(--primary-orange)' : '1px solid #e2e8f0',
+                    background: '#f8fafc',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    padding: '4px',
+                    opacity: activeImg === i ? 1 : 0.65,
+                    transition: 'all 0.3s'
                   }}
                 >
-                  <img src={img} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  <img src={img} alt="" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
                 </motion.div>
               ))}
             </div>
@@ -213,7 +241,9 @@ const ProductDetail = () => {
               whileHover={{ y: -5, boxShadow: '0 12px 30px rgba(0,0,0,0.08)' }}
               style={{ backgroundColor: 'white', borderRadius: '10px', overflow: 'hidden', border: '1px solid #e2e8f0', cursor: 'pointer' }}
             >
-              <img src={p.image} alt={p.title} style={{ width: '100%', height: '180px', objectFit: 'cover' }} />
+              <div style={{ height: '260px', background: '#ffffff', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 0 }}>
+                <img src={p.image} alt={p.title} style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }} />
+              </div>
               <div style={{ padding: '1rem' }}>
                 <h3 style={{ fontFamily: "'Playfair Display', serif", color: 'var(--primary-blue)', marginBottom: '0.3rem', fontSize: '1.05rem' }}>{p.title}</h3>
                 <p style={{ color: 'var(--text-light)', fontSize: '0.85rem', marginBottom: '0.8rem' }}>{p.description}</p>
